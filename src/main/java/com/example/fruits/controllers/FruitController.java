@@ -99,7 +99,7 @@ public class FruitController{
         return "Didn't find anything fruit with that name.";
     }
 
-    @GetMapping(path="/deleteallbyname")
+    @GetMapping(path="/deleteallbycolor")
     public String deleteAllByColor(@RequestParam String color){
         Iterable<Fruit> list = ifruitrepo.findByName(color);
         ifruitrepo.deleteAll(list);
