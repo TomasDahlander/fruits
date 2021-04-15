@@ -22,7 +22,12 @@ public class FruitController{
 
     @GetMapping(path="/info")
     public String index(){
-        return "/add = post a fruit<br>/getall = returns all fruits<br>/getbyname = returns specific fruit info";
+        return "/add = add a fruit with Get method<br>" +
+                "/addwithpost = add a fruit with Post method<br>" +
+               "/getall = returns all fruits<br>" +
+                "/getbyname = returns specific fruits with that names info<br>" +
+                "/getbycolor = returns specific fruits with that colors info<br>" +
+                "/getbynameandcolor = return specific fruits with those variables<br>";
     }
 
     @GetMapping(path="/add")
@@ -43,16 +48,6 @@ public class FruitController{
         return "Fruit saved with post method!";
     }
 
-
-    @GetMapping(path="/addRandom")
-    public String addRandomFruit(){
-        Fruit f = new Fruit();
-        f.setName("Banan");
-        f.setColor("Gul");
-        ifruitrepo.save(f);
-        return "Fruit saved";
-    }
-
     @GetMapping(path="/getall")
     public @ResponseBody Iterable<Fruit> getGroceries(){
         return ifruitrepo.findAll();
@@ -71,6 +66,44 @@ public class FruitController{
     @GetMapping(path="/getbynameandcolor")
     public @ResponseBody List<Fruit> getFruitByNameAndColor(@RequestParam String name, @RequestParam String color){
         return ifruitrepo.findByNameAndColor(name,color);
+    }
+
+    @GetMapping(path="/deletebyname")
+    public String deleteByName(@RequestParam String name){
+        Iterable<Fruit> list = ifruitrepo.findAll();
+        for(Fruit f : list){
+            if(f.getName().equalsIgnoreCase(name)) {
+                ifruitrepo.delete(f);
+                return "Deleted "+f+" from database";
+            }
+        }
+        return "Didn't find anything fruit with that name.";
+    }
+
+    @GetMapping(path="/deleteallbyname")
+    public String deleteAllByName(@RequestParam String name){
+        Iterable<Fruit> list = ifruitrepo.findByName(name);
+        ifruitrepo.deleteAll(list);
+        return "Delete from database: <br> " + list;
+    }
+
+    @GetMapping(path="/deletebycolor")
+    public String deleteByColor(@RequestParam String color){
+        Iterable<Fruit> list = ifruitrepo.findAll();
+        for(Fruit f : list){
+            if(f.getName().equalsIgnoreCase(color)) {
+                ifruitrepo.delete(f);
+                return "Deleted "+f+" from database";
+            }
+        }
+        return "Didn't find anything fruit with that name.";
+    }
+
+    @GetMapping(path="/deleteallbyname")
+    public String deleteAllByColor(@RequestParam String color){
+        Iterable<Fruit> list = ifruitrepo.findByName(color);
+        ifruitrepo.deleteAll(list);
+        return "Delete from database: <br> " + list;
     }
 
 }
