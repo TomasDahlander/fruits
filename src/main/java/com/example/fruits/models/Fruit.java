@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Fruit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private long id;
 
     private String name;
@@ -18,9 +18,10 @@ public class Fruit {
 
     public Fruit(){}
 
-    public Fruit(long id, String name) {
+    public Fruit(long id, String name, String color) {
         this.id = id;
         this.name = name;
+        this.color = color;
     }
 
     public long getId() {
