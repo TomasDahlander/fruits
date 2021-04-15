@@ -18,6 +18,11 @@ public class Fruit {
 
     public Fruit(){}
 
+    public Fruit(String name) {
+        this.name = name;
+        this.color = "Vit";
+    }
+
     public Fruit(String name, String color) {
         this.name = name;
         this.color = color;

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Tomas Dahlander <br>
  * Date: 2021-04-08 <br>
  * Time: 14:40 <br>
- * Project: LiveSpringInitilizrDemo <br>
+ * Project: fruits <br>
  */
 @RestController
 @RequestMapping(path="/fruit")
