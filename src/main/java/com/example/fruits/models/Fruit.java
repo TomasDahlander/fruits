@@ -18,6 +18,17 @@ public class Fruit {
 
     public Fruit(){}
 
+    public Fruit(String name) {
+        this.id = id;
+        this.name = name;
+        this.color = "Vit";
+    }
+
+    public Fruit(String name, String color) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Fruit(long id, String name, String color) {
         this.id = id;
         this.name = name;
