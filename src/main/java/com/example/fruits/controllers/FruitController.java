@@ -22,12 +22,17 @@ public class FruitController{
 
     @GetMapping(path="/info")
     public String index(){
-        return "/add = add a fruit with Get method<br>" +
+        return  "/add = add a fruit with Get method<br>" +
                 "/addwithpost = add a fruit with Post method<br>" +
-               "/getall = returns all fruits<br>" +
+                "/addlistwithpost = adds a list of fruits with Post method<br>" +
+                "/getall = returns all fruits<br>" +
                 "/getbyname = returns specific fruits with that names info<br>" +
                 "/getbycolor = returns specific fruits with that colors info<br>" +
-                "/getbynameandcolor = return specific fruits with those variables<br>";
+                "/getbynameandcolor = return specific fruits with those variables<br>" +
+                "/deletebyname = delete one fruit with specific name<br>" +
+                "/deleteallbyname = deletes all fruits with specific name<br>" +
+                "/deletebycolor = delete one fruit with specific color<br>" +
+                "/deleteallbycolor = deletes all fruits with specific color<br>";
     }
 
     @GetMapping(path="/add")
@@ -45,6 +50,17 @@ public class FruitController{
         f.setName(fruit.getName());
         f.setColor(fruit.getColor());
         ifruitrepo.save(f);
+        return "Fruit saved with post method!";
+    }
+
+    @PostMapping(path="/addlistwithpost")
+    public String addNewListGroceryByPost(@RequestBody List<Fruit> fruits){
+        for(Fruit f : fruits){
+            Fruit fruit = new Fruit();
+            fruit.setName(f.getName());
+            fruit.setColor(f.getColor());
+            ifruitrepo.save(f);
+        }
         return "Fruit saved with post method!";
     }
 
